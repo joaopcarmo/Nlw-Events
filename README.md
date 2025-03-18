@@ -3,13 +3,6 @@
 Este é um sistema de gerenciamento de eventos desenvolvido com Spring Boot, que permite a criação, consulta e gerenciamento de eventos, além de um sistema de inscrições com indicações e ranking.
 
 
-## Telas: 
-![image](https://github.com/user-attachments/assets/90b0eb9d-13db-42b5-a0bb-1fb6505cee30)
-![image](https://github.com/user-attachments/assets/69bf522a-89be-4291-9f1d-a92a4d315481)
-![image](https://github.com/user-attachments/assets/ff4b96ea-3233-44be-a63a-2427b6dd18af)
-![image](https://github.com/user-attachments/assets/39490c66-8e0f-45e9-891d-2229696847d1)
-
-
 ## Visão Geral
 
 O sistema consiste em uma aplicação Java Spring Boot que gerencia eventos e inscrições de usuários. Ele oferece uma API REST para interagir com os recursos do sistema.
