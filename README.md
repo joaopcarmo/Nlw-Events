@@ -1,83 +1,82 @@
-# Sistema de Eventos - NLW Events
+# Event Management System - NLW Events
 
-Este é um sistema de gerenciamento de eventos desenvolvido com Spring Boot, que permite a criação, consulta e gerenciamento de eventos, além de um sistema de inscrições com indicações e ranking.
+This is an event management system developed with Spring Boot. It allows for the creation, retrieval, and management of events, along with a registration system that includes referral tracking and a ranking feature.
 
+## Overview
 
-## Visão Geral
+The system is a Java Spring Boot application that manages events and user registrations. It provides a REST API to interact with its resources.
 
-O sistema consiste em uma aplicação Java Spring Boot que gerencia eventos e inscrições de usuários. Ele oferece uma API REST para interagir com os recursos do sistema.
+### Main Features:
 
-### Principais funcionalidades:
+- Create and retrieve events
+- Register users for events
+- Referral system: users can refer others
+- Generate a referral ranking
+- View a specific user's position in the ranking
 
-- Cadastro e consulta de eventos
-- Inscrição de usuários em eventos
-- Sistema de indicação, onde um usuário pode indicar outro
-- Geração de ranking de indicações
-- Consulta da posição de um usuário específico no ranking
+## Project Structure
 
-## Estrutura do Projeto
+### Main Packages:
 
-### Pacotes principais:
+- **controller**: REST controllers that expose the API
+- **model**: Domain entities mapped to the database
+- **service**: Business logic layer
+- **repository**: Interfaces for database access
+- **dto**: Data Transfer Objects
+- **exception**: Custom exceptions
 
-- **controller**: Controladores REST que expõem a API
-- **model**: Entidades de domínio mapeadas para o banco de dados
-- **service**: Camada de serviço que implementa as regras de negócio
-- **repository**: Interfaces para acesso ao banco de dados
-- **dto**: Objetos de transferência de dados
-- **exception**: Exceções personalizadas
+### Core Entities:
 
-### Entidades principais:
+- **Event**: Represents an event with title, location, price, and dates
+- **User**: Represents a user with name and email
+- **Subscription**: Represents a user's registration to an event, optionally including a referrer
 
-- **Event**: Representa um evento com título, local, preço e datas
-- **User**: Representa um usuário com nome e email
-- **Subscription**: Representa a inscrição de um usuário em um evento, podendo incluir informação de quem o indicou
+## API Endpoints
 
-## Endpoints da API
+### Events
 
-### Eventos
+- `POST /events` - Registers a new event  
+- `GET /events` - Lists all events  
+- `GET /events/{prettyName}` - Retrieves a specific event by its formatted name
 
-- `POST /events` - Cadastra um novo evento
-- `GET /events` - Lista todos os eventos
-- `GET /events/{prettyName}` - Busca um evento específico pelo seu nome formatado
+### Subscriptions
 
-### Inscrições
+- `POST /subscription/{prettyName}` - Registers a user for an event  
+- `POST /subscription/{prettyName}/{userId}` - Registers a user with a referral  
+- `GET /subscription/{prettyName}/ranking` - Returns the top 3 referrers for an event  
+- `GET /subscription/{prettyName}/ranking/{userId}` - Returns a specific user’s ranking position
 
-- `POST /subscription/{prettyName}` - Inscreve um usuário em um evento
-- `POST /subscription/{prettyName}/{userId}` - Inscreve um usuário em um evento com indicação
-- `GET /subscription/{prettyName}/ranking` - Retorna o top 3 do ranking de indicações para um evento
-- `GET /subscription/{prettyName}/ranking/{userId}` - Retorna a posição de um usuário específico no ranking
+## Configuration
 
-## Configurações
+CORS configuration is included to allow frontend applications to access the API, supporting GET, POST, PUT, and DELETE methods.
 
-O sistema inclui configuração de CORS para permitir acesso de aplicações frontend, com suporte para os métodos GET, POST, PUT e DELETE.
+## Exception Handling
 
-## Tratamento de Exceções
+The system handles the following error cases:
 
-O sistema trata as seguintes situações de erro:
+- Event not found  
+- Registration conflict (user already registered for the event)  
+- Referrer not found
 
-- Evento não encontrado
-- Conflito de inscrição (usuário já inscrito em um evento)
-- Usuário indicador não encontrado
+## Data Modeling
 
-## Modelagem de Dados
+The system uses a relational database with the following tables:
 
-O sistema utiliza um banco de dados relacional com as seguintes tabelas:
+- `tbl_event`: Stores event information  
+- `tbl_user`: Stores user information  
+- `tbl_subscription`: Stores registration data and relationships
 
-- `tbl_event`: Armazena informações dos eventos
-- `tbl_user`: Armazena informações dos usuários
-- `tbl_subscription`: Armazena as inscrições e suas relações
+## How to Run
 
-## Como executar
+1. Clone the repository  
+2. Configure your database in the application properties  
+3. Run the project using Maven: `mvn spring-boot:run`  
+4. The API will be available at: `http://localhost:8080`
 
-1. Clone o repositório
-2. Configure seu banco de dados nas propriedades da aplicação
-3. Execute o projeto usando Maven: `mvn spring-boot:run`
-4. A API estará disponível em: `http://localhost:8080`
+## Technologies Used
 
-## Tecnologias utilizadas
-
-- Java
-- Spring Boot
-- Spring Data JPA
-- Spring Web
-- Banco de dados relacional (configurável)
+- Java  
+- Spring Boot  
+- Spring Data JPA  
+- Spring Web  
+- Relational database (configurable)
